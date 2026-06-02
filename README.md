@@ -1,4 +1,4 @@
-# ESP32 128x64 Game Engine
+# ESP32 128x64  Engine
 
 A compact ESP32 game engine for a 128x64 SSD1306 OLED display.
 

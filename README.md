@@ -1,36 +1,45 @@
-# ESP32-C3 hand-held (Breadboard Edition)
+# ESP32 128x64 Game Engine
 
-A bare-bones, functional hardware prototype of a handheld simple game engine .
----
+A compact ESP32 game engine for a 128x64 SSD1306 OLED display.
 
-## 🚀 Current Status
+## 🚀 What is included
 
-*   **Display:** Working. It renders a pixel dinosaur, a cactus, and the UI.
-*   **Game Logic:** Working. It handles the jump physics, collision detection, score tracking, and the "GAME OVER" state.
-*   **Controls:** tow button .
+*   `src/main.cpp` – a complete game engine for ESP32 in Arduino/PlatformIO style.
+*   `platformio.ini` – PlatformIO project configuration for `esp32dev`.
+*   `main.c` – placeholder note pointing to the actual source file.
 
----
+## 🎮 Engine features
 
-## 🛠️ Hardware Setup
+*   128x64 pixel display support with SSD1306.
+*   Jump physics, ground collision, and obstacle movement.
+*   Simple score tracking and game-over flow.
+*   Menu, playing state, and restart behavior.
 
+## 🔧 Default wiring
 
-*   **Microcontroller:** ESP32-C3 Super Mini. Powered and flashed directly via the onboard USB-C port.
-*   **Display:** Standard 4-pin I2C OLED Display (SSD1306). Wired directly to the ESP32-C3's I2C pins:
-    *   GND -> GND
-    *   VCC -> 3.3V
-    *   SCL -> SCL pin
-    *   SDA -> SDA pin
-*   **Base:** 1x Mini 170-tie-point breadboard.
-*   **Input:** 2x Tactile Push Button  
-*   **Wiring:** Minimal solid-core jumper wires holding the screen and board together.
+*   **OLED I2C**
+    *   SDA -> GPIO 21
+    *   SCL -> GPIO 22
+*   **Button 1 (jump)** -> GPIO 4
+*   **Button 2 (action/reset)** -> GPIO 15
+*   Buttons should be wired from the GPIO pin to GND, with the code using `INPUT_PULLUP`.
 
----
+## 📦 Build and flash
 
-## 💻 Software Architecture
+This project uses PlatformIO. From the repository root:
 
-The software is lightweight, direct, and specifically written to run smoothly on this exact hardware setup.
+```bash
+pio run
+pio run -t upload
+```
 
-*   **Language:** C / C++
-*   **Environment:** Arduino IDE / PlatformIO
-*   **Graphics & Display Drivers:** Utilizing lightweight libraries (like `Adafruit_SSD1306` and `Adafruit_GFX`, or `U8g2`) to push pixels to the I2C OLED over the wire without lagging the game loop.
+If you prefer Arduino IDE, copy the contents of `src/main.cpp` into a new sketch and install:
+
+*   `Adafruit SSD1306`
+*   `Adafruit GFX Library`
+
+## 🛠 Notes
+
+*   The engine is intentionally small and designed for low-latency refresh on ESP32.
+*   You can extend it by adding more enemies, animated sprites, tile maps, and sound output.
 ---
